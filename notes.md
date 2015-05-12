@@ -53,3 +53,10 @@ Things to do:
 - Chris should bring the unused cell phone for a hot spot
 - Chris write a script in any language and spit out a bunch of key words - spit out key word + new line - python - web user agent
 - Mihir will do something similar with news feed and another tool that extracts key words - probably perl
+
+
+05/06/15
+- Chris finished the markdown tutorial
+- Mihir got a NYT api - we should use facets for topics
+- Chris had trouble install pycurl
+http://api.nytimes.com/svc/topstories/v1/home.json?api-key=091882e61861f420060b35097b4419a2:1:72021160
