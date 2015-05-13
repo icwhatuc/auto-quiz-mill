@@ -60,3 +60,8 @@ Things to do:
 - Mihir got a NYT api - we should use facets for topics
 - Chris had trouble install pycurl
 http://api.nytimes.com/svc/topstories/v1/home.json?api-key=091882e61861f420060b35097b4419a2:1:72021160
+
+05/12/15
+- Chris got json to be read in python, working on getting the trend->title out of it
+- Useful from Mihir: cat trendExample.txt | python -m json.tool > neat.txt
+- Mihir got the top facets from the NYT article
