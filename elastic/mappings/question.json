@@ -1,0 +1,17 @@
+{
+    "question" : {
+        "properties" : {
+            "name" : {
+                "type" : "string"
+            },
+            "question_text" : {
+                "type" : "string",
+                "omit_norms" : true,
+                "analyzer" : "snowball"
+            },
+            "difficulty" : {
+                "type" : "short"
+            }
+        }
+    }
+}

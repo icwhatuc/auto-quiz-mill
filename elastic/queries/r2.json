@@ -1,0 +1,26 @@
+{
+    "_shards": {
+        "failed": 0, 
+        "successful": 1, 
+        "total": 1
+    }, 
+    "hits": {
+        "hits": [
+            {
+                "_id": "2", 
+                "_index": "test", 
+                "_score": 1.0, 
+                "_source": {
+                    "difficulty": 50, 
+                    "name": "q2", 
+                    "question_text": "What is the population of the United States?"
+                }, 
+                "_type": "question"
+            }
+        ], 
+        "max_score": 1.0, 
+        "total": 1
+    }, 
+    "timed_out": false, 
+    "took": 2
+}

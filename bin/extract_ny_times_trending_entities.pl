@@ -52,5 +52,5 @@ if($opt_p) {
     push(@facets, @persons);
 }
 
-print "$_\n" foreach (sort(uniq(@facets)));
+print "$_\n" foreach (sort {lc $a cmp lc $b} (uniq(@facets)));
 

@@ -1,0 +1,26 @@
+{
+    "_shards": {
+        "failed": 0, 
+        "successful": 1, 
+        "total": 1
+    }, 
+    "hits": {
+        "hits": [
+            {
+                "_id": "1", 
+                "_index": "test", 
+                "_score": 1.0, 
+                "_source": {
+                    "difficulty": 10, 
+                    "name": "q1", 
+                    "question_text": "How fast does an iron nail oxidize?"
+                }, 
+                "_type": "question"
+            }
+        ], 
+        "max_score": 1.0, 
+        "total": 1
+    }, 
+    "timed_out": false, 
+    "took": 1
+}
