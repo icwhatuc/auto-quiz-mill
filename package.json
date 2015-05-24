@@ -1,0 +1,9 @@
+{
+    "name" : "auto-quiz-mill",
+    "version" : "0.0.1",
+    "email" : "cuicwhatuc@gmail.com",
+    "url" : "https://github.com/icwhatuc/auto-quiz-mill/issues",
+    "dependencies" : {
+        "express" : "4.12.4"
+    }
+}
