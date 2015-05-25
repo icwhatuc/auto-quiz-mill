@@ -56,7 +56,7 @@ var MillTopicsShow = React.createClass({
         var currentTopicUrl = "http://www.google.com/search?q=" + currentTopicName;
         return (
             <div className="topic">
-                <a target="_blank" href="{currentTopicUrl}">
+                <a target="_blank" href={currentTopicUrl}>
                     {currentTopicName}
                 </a>
             </div>

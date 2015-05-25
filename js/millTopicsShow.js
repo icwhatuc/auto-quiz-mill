@@ -56,7 +56,7 @@ var MillTopicsShow = React.createClass({displayName: "MillTopicsShow",
         var currentTopicUrl = "http://www.google.com/search?q=" + currentTopicName;
         return (
             React.createElement("div", {className: "topic"}, 
-                React.createElement("a", {target: "_blank", href: "{currentTopicUrl}"}, 
+                React.createElement("a", {target: "_blank", href: currentTopicUrl}, 
                     currentTopicName
                 )
             )
