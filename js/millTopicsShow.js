@@ -1,18 +1,30 @@
 var MillTopicsShow = React.createClass({displayName: "MillTopicsShow",
     getInitialState : function() {
-        return {
+        var self = this;
+
+        var state = {
             topics : [
                 {"name" : "Tomorrowland", "type" : "movie"},
                 {"name" : "Barack Obama", "type" : "person"},
                 {"name" : "Las Vegas", "type" : "place"},
-                {"name" : "ICWHATUC", "type" : "organization"},
-                {"name" : "Memorial Day", "type" : "event"},
+                {"name" : "Fleet Week", "type" : "event"},
+                {"name" : "Stephen Curry", "type" : "person"}
             ],
             currentTopic: {
                 "name" : "Tomorrowland",
                 "type" : "movie"
-            }
+            },
         };
+
+        google.load('search', '1', {
+            callback: function() {
+                self.imageSearch = new google.search.ImageSearch();
+                self.imageSearch.setSearchCompleteCallback(self, self.setTopic, null);
+                self.imageSearch.execute(state.currentTopic.name);
+            }
+        });
+        
+        return state;
     },
 
     getFreshTopicsFromServer : function() {
@@ -22,32 +34,48 @@ var MillTopicsShow = React.createClass({displayName: "MillTopicsShow",
     getRandomTopic : function(exclude) {
         var excludes_dict = {};
         var topics = this.state.topics;
-        if(!exclude)
+        if(!exclude && this.state.currentTopic)
             exclude = this.state.currentTopic;
         
-        if(exclude.contructor === Array)
+        if(exclude && exclude.contructor === Array)
         {
             for(var k = 0; k < exclude.length; k++)
                 excludes_dict[exclude[k].name] = true;
         }
-        else
+        else if(exclude)
             excludes_dict[exclude.name] = true;
 
         var randIdx;
         do {
             randIdx = Math.floor(Math.random()*topics.length);
         } while(excludes_dict[topics[randIdx].name]);
-        
+       
+        if(this.imageSearch) {
+            this.imageSearch.execute(topics[randIdx].name);
+        }
+
         this.setState({
-            currentTopic : topics[randIdx]
+            nextTopic : topics[randIdx]
         });
+    },
+
+    setTopic : function() {
+        if (this.imageSearch.results && this.imageSearch.results.length > 0) {
+            var image = this.imageSearch.results[0];
+            document.getElementById("background").style.backgroundImage = "url('" + image.url + "')";
+        }
+
+        if(this.state.nextTopic)
+            this.setState({
+                currentTopic : this.state.nextTopic
+            });
     },
 
     /* expected stuff follows */
     componentDidMount : function() {
         this.getFreshTopicsFromServer();
         setInterval(this.getFreshTopicsFromServer, this.props.pollServerInterval);
-        this.getRandomTopic();
+        // this.getRandomTopic();
         setInterval(this.getRandomTopic, this.props.topicInterval);
     },
 
@@ -55,8 +83,8 @@ var MillTopicsShow = React.createClass({displayName: "MillTopicsShow",
         var currentTopicName = this.state.currentTopic.name;
         var currentTopicUrl = "http://www.google.com/search?q=" + currentTopicName;
         return (
-            React.createElement("div", {className: "topic"}, 
-                React.createElement("a", {target: "_blank", href: currentTopicUrl}, 
+            React.createElement("div", {className: "topicContainer"}, 
+                React.createElement("a", {className: "topic", target: "_blank", href: currentTopicUrl}, 
                     currentTopicName
                 )
             )
