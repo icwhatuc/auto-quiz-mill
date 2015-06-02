@@ -14,7 +14,7 @@ c.perform()
 jsonString = buf.getvalue()
 jsonObject = json.loads(jsonString)
 #print jsonObject
-print jsonObject['weeksList'][0]['daysList'][1]['data']['trend']['title']
+#print jsonObject['weeksList'][0]['daysList'][1]['data']['trend']['title']
 
 for week in jsonObject['weeksList']:
     #print weeksList['daysList']
