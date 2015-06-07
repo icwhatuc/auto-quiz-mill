@@ -1,4 +1,4 @@
-package MediaWiki::Simple;
+package Wikidata::API;
 
 use strict;
 use warnings;
@@ -6,7 +6,7 @@ use warnings;
 use Data::Dumper;
 use MediaWiki::API;  # cpan module
 
-# please see the docs here: https://github.com/icwhatuc/auto-quiz-mill/wiki/Wikidata
+# docs available here: https://github.com/icwhatuc/auto-quiz-mill/wiki/Wikidata
 
 use Exporter qw(import);
 
