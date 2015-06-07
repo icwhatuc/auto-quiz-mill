@@ -3,7 +3,17 @@
 use strict;
 use warnings;
 
-use Wikidata::API qw(_getClosestMatchID);
+use feature qw(say);
+use Data::Dumper;
 
-warn _getClosestMatchID($ARGV[0] || "Einstein");
+use Wikidata::API qw(
+    getTopEntityID
+    getEntityNameByID
+    getTopEntity
+);
+
+say Dumper getTopEntity($ARGV[0] || "einstein")->hashref;
+# say getTopEntityID("einstein");
+# say getEntityNameByID("Q937");
+
 
