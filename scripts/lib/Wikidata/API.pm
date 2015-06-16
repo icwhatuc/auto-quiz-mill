@@ -124,6 +124,8 @@ sub getEntityByID
         ids => $id,
         languages => 'en'
     );
+    
+    # use the entities->id as key for hashing into CHI file-based cache
     my $mwresp = $mwh->api(\%params);
     my $entity_raw = $mwresp->{entities}->{$id};
 
