@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import pycurl, json, urllib2, StringIO
 
 #site = urllib2.urlopen("www.google.com/trends/hottrends/hotItems/ajax=1&htd=20131111&pn=p1&htv=l").read()
