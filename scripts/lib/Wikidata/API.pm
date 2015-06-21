@@ -122,18 +122,16 @@ sub getEntities
 sub getEntityByID
 {
     my ($id, $opts) = @_;
-    my $entity_raw;
-    if(defined $cache->get( $id )) {
-        warn "Taking entity from cache for id " . $id;
-        $entity_raw = $cache->get( $id );
-        #warn Dumper $entity_raw;
-    }
-    
-    else {
-        warn "Downloading raw data to make new entity for id " . $id;
 
+    my $entity_raw;
+    # reference mapping ids to property names
+    my $props = !$opts->{rawdata} ? _getprops() : undef;
+    
+    if(defined $cache->get( $id )) {
+        $entity_raw = $cache->get( $id );
+    }
+    else {
         my $mwh = _getmwh();
-        my $props = !$opts->{rawdata} ? _getprops() : undef;
         my $default_params = _getDefaultParams();
         my %params = (
             %$default_params,
@@ -145,7 +143,6 @@ sub getEntityByID
         my $mwresp = $mwh->api(\%params);
         $entity_raw = $mwresp->{entities}->{$id};
         $cache->set( $id => $entity_raw );
-        #warn Dumper $entity_raw;
     }
     
 
