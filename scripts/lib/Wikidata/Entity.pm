@@ -40,8 +40,11 @@ sub _preprocess
             
             foreach my $detail (@$prop_details)
             {
+                my $qualifiers;
                 my $value = $detail->{mainsnak}->{datavalue};
                 my $valuetype = $detail->{mainsnak}->{datatype};
+                my $qdetails = $detail->{qualifiers};
+
                 if($valuetype && $valuetype eq 'wikibase-item')
                 {
                     if($value->{type} eq 'wikibase-entityid')
@@ -62,8 +65,46 @@ sub _preprocess
                     $value = $value->{value};
                 }
 
-                # TODO: handle qualifiers
-                push(@$prop_value, $value);
+                ## handle qualifier
+                if($qdetails)
+                {
+                    $qualifiers = {};
+
+                    foreach my $qprop (keys %$qdetails)
+                    {
+                        my $qpropname = $propsref->{$qprop};
+                        my $qpropvalues = $qdetails->{$qprop};
+                        my @qvals = ();
+
+                        foreach my $qpval (@$qpropvalues)
+                        {
+                            my $qproptype = $qpval->{datatype};
+                            if($qproptype eq 'time')
+                            {
+                                push(@qvals, $qpval->{datavalue}->{value}->{time});
+                            }
+                            elsif($qproptype eq 'string')
+                            {
+                                push(@qvals, $qpval->{datavalue}->{value});
+                            }
+                            elsif($qproptype eq 'globe-coordinate')
+                            {
+                                push(@qvals, {
+                                    latitude => $qpval->{datavalue}->{value}->{latitude},
+                                    longitude => $qpval->{datavalue}->{value}->{longitude}
+                                });
+                            }
+                            else
+                            {
+                                # warn "ERROR: unexpected qualifier prop value of type = $qproptype";
+                            }
+                        }
+                        
+                        $qualifiers->{$qpropname} = scalar @qvals == 1 ? $qvals[0] : \@qvals;
+                    }
+                }
+
+                push(@$prop_value, $qualifiers ? { $value => $qualifiers } : $value);
             }
 
             if(scalar @$prop_value)
