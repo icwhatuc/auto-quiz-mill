@@ -142,7 +142,7 @@ sub getEntityByID
         
         my $mwresp = $mwh->api(\%params);
         $entity_raw = $mwresp->{entities}->{$id};
-        $cache->set( $id => $entity_raw );
+        $cache->set( $id => $entity_raw, {expires_in => "1 week"} );
     }
     
 
