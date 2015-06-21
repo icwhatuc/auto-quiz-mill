@@ -5,7 +5,8 @@ use warnings;
 
 use Search::Elasticsearch;
 
-use constant ELASTIC_ENTITY_TYPE => 'entity';
+use constant ELASTIC_INDEX => 'auto-quiz-mill';
+use constant ELASTIC_ENTITY_TYPE => 'entities';
 
 use Exporter qw(import);
 our @EXPORT_OK = qw(saveEntity deleteEntity);
@@ -23,10 +24,10 @@ sub _getesh
 
 sub saveEntity
 {
-    my ($index, $id, $entity) = @_;
+    my ($id, $entity) = @_;
     my $es = _getesh();
     $es->index(
-        index => $index,
+        index => ELASTIC_INDEX,
         type => ELASTIC_ENTITY_TYPE,
         id => $id,
         body => $entity
@@ -35,9 +36,9 @@ sub saveEntity
 
 sub deleteEntity
 {
-    my ($index, $id) = @_;
+    my ($id) = @_;
     $es->delete(
-        index => $index,
+        index => ELASTIC_INDEX,
         type => ELASTIC_ENTITY_TYPE,
         id => $id
     );

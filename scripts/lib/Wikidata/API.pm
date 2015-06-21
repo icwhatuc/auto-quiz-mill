@@ -111,7 +111,7 @@ sub getTopEntity
     my ($query, $opts) = @_;
     my $mwh = _getmwh();
     my $topResultId = getTopEntityID($query);
-    my $entity = getEntityByID($topResultId, $opts);
+    my $entity = $topResultId ? getEntityByID($topResultId, $opts) : undef;
     return $entity;
 }
 
