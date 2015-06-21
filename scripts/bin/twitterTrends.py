@@ -11,7 +11,10 @@ api = twitter.Api(consumer_key='8AqRYPTl1iESFCF2TipE0fJf2',
 #print api.VerifyCredentials()
 
 #Woeid of New York = 2459115
-trend = api.GetTrendsWoeid(2459115)
+trends = api.GetTrendsWoeid(2459115)
 
-print trend
+# print trend
+
+for item in trends:
+    print item.name
 
