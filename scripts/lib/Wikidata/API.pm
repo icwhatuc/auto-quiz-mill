@@ -5,6 +5,8 @@ package Wikidata::API;
 use strict;
 use warnings;
 
+use CHI;
+use FindBin qw($Bin);
 use Data::Dumper;
 use MediaWiki::API;  # cpan module
 use File::Slurp qw(read_file);
@@ -26,6 +28,11 @@ our @EXPORT_OK = qw(
 );
 our $mw;
 our $props;
+
+my $cache = CHI->new(
+    driver => 'File',
+    root_dir => "$Bin/../../tmp/"
+);
 
 sub _getmwh
 {
@@ -115,20 +122,29 @@ sub getEntities
 sub getEntityByID
 {
     my ($id, $opts) = @_;
-    my $mwh = _getmwh();
-    my $props = !$opts->{rawdata} ? _getprops() : undef;
-    my $default_params = _getDefaultParams();
-    my %params = (
-        %$default_params,
-        action => 'wbgetentities',
-        ids => $id,
-        languages => 'en'
-    );
-    
-    # use the entities->id as key for hashing into CHI file-based cache
-    my $mwresp = $mwh->api(\%params);
-    my $entity_raw = $mwresp->{entities}->{$id};
 
+    my $entity_raw;
+    # reference mapping ids to property names
+    my $props = !$opts->{rawdata} ? _getprops() : undef;
+    
+    if(defined $cache->get( $id )) {
+        $entity_raw = $cache->get( $id );
+    }
+    else {
+        my $mwh = _getmwh();
+        my $default_params = _getDefaultParams();
+        my %params = (
+            %$default_params,
+            action => 'wbgetentities',
+            ids => $id,
+            languages => 'en'
+        );
+        
+        my $mwresp = $mwh->api(\%params);
+        $entity_raw = $mwresp->{entities}->{$id};
+        $cache->set( $id => $entity_raw, {expires_in => "1 week"} );
+    }
+    
     return $opts->{rawdata} ? 
         $entity_raw : 
         Wikidata::Entity->new($entity_raw, 
