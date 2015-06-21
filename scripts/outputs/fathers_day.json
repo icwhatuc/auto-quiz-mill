@@ -1,0 +1,14 @@
+{
+   "name" : "Father's day",
+   "description" : "celebration honoring fathers",
+   "GND identifier" : "4417078-6",
+   "Commons category" : "Father's Day",
+   "instance of" : [
+      "holiday",
+      "PEN Emerging Writers Awards"
+   ],
+   "id" : "Q134847",
+   "LCNAF LCCN identifier" : "sh85047457",
+   "Freebase identifier" : "/m/0cjkt"
+}
+

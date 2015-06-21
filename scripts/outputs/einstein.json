@@ -1,0 +1,258 @@
+{
+   "dmoz" : [
+      {
+         "Science/Physics/History/People/Einstein,_Albert" : {
+            "language of work" : []
+         }
+      },
+      {
+         "World/Fran%C3%A7ais/Sciences/Physique/Histoire/Personnages_historiques/Einstein%2C_Albert" : {
+            "language of work" : []
+         }
+      },
+      {
+         "World/Deutsch/Wissenschaft/Naturwissenschaften/Physik/Personen/Einstein%2C_Albert" : {
+            "language of work" : []
+         }
+      },
+      {
+         "World/Espa%C3%B1ol/Ciencia_y_tecnolog%C3%ADa/F%C3%ADsica/Historia/Biograf%C3%ADas/Einstein%2C_Albert" : {
+            "language of work" : []
+         }
+      }
+   ],
+   "country of citizenship" : [
+      {
+         "Kingdom of Württemberg" : {
+            "start time" : "+1879-03-14T00:00:00Z",
+            "end time" : "+1896-01-28T00:00:00Z"
+         }
+      },
+      {
+         "" : {
+            "start time" : "+1896-01-28T00:00:00Z",
+            "end time" : "+1901-02-21T00:00:00Z"
+         }
+      },
+      {
+         "Switzerland" : {
+            "start time" : "+1901-02-21T00:00:00Z",
+            "end time" : "+1955-04-18T00:00:00Z"
+         }
+      },
+      {
+         "Weimar Republic" : {
+            "start time" : "+1920-01-01T00:00:00Z",
+            "end time" : "+1933-01-01T00:00:00Z"
+         }
+      },
+      {
+         "United States of America" : {
+            "start time" : "+1940-01-01T00:00:00Z",
+            "end time" : "+1955-04-18T00:00:00Z"
+         }
+      }
+   ],
+   "described by source" : [
+      {
+         "Larousse Encyclopedia online" : {
+            "section, verse, or paragraph" : "Albert Einstein",
+            "reference URL" : []
+         }
+      },
+      {
+         "European Library of Information and Culture" : {
+            "section, verse, or paragraph" : "Einstein, Albert 1879-1955"
+         }
+      }
+   ],
+   "academic degree" : "professor",
+   "MacTutor id (biographies)" : "Einstein",
+   "date of birth" : "+1879-03-14T00:00:00Z",
+   "SELIBR" : "184709",
+   "date of death" : "+1955-04-18T00:00:00Z",
+   "name" : "Albert Einstein",
+   "GND identifier" : "118529579",
+   "description" : "German-American physicist and founder of the theory of relativity",
+   "doctoral advisor" : "Alfred Kleiner",
+   "GTAA id" : "96461",
+   "LCNAF LCCN identifier" : "n79022889",
+   "EncyclopÃ¦dia Britannica Online ID" : {
+      "181349" : {
+         "author" : [],
+         "(OBSOLETE) title (use P1476, \"title\")" : "Albert Einstein"
+      }
+   },
+   "spouse" : [
+      {
+         "Elsa Einstein" : {
+            "start time" : "+1919-01-01T00:00:00Z",
+            "end time" : "+1936-01-01T00:00:00Z"
+         }
+      },
+      {
+         "Mileva Marić" : {
+            "start time" : "+1903-01-01T00:00:00Z",
+            "end time" : "+1919-01-01T00:00:00Z"
+         }
+      }
+   ],
+   "NDL identifier" : "00438728",
+   "Commons Creator page" : "Albert Einstein",
+   "BnF identifier" : "119016075",
+   "British Museum person-institution" : "9689",
+   "student of" : "Heinrich Friedrich Weber",
+   "SUDOC authorities" : "026849186",
+   "Mathematics Genealogy Project identifier" : "53269",
+   "Munzinger IBA" : "00000000666",
+   "NKC identifier" : "jn19990002019",
+   "child" : [
+      "Hans Albert Einstein",
+      "Eduard Einstein",
+      "Lieserl Einstein"
+   ],
+   "location of creative working" : [
+      "Bern",
+      "Prague",
+      "Zürich",
+      "Berlin"
+   ],
+   "CANTIC" : "a10077078",
+   "image" : "Albert Einstein Head.jpg",
+   "BNE identifier" : "XX834035",
+   "SBN identifier" : "IT\\ICCU\\CFIV\\035853",
+   "given name" : "Albert",
+   "PTBNP identifier" : "26339",
+   "ISNI (ISO 27729)" : [
+      "0000 0000 7704 0933",
+      "0000 0001 2281 955X"
+   ],
+   "educated at" : [
+      "ETH Zurich",
+      "Alte Kantonsschule Aarau",
+      "Luitpold-Gymnasium"
+   ],
+   "member of" : [
+      "Royal Society",
+      "Prussian Academy of Sciences",
+      "German Academy of Sciences Leopoldina",
+      "Lincean Academy",
+      "American Philosophical Society",
+      "Bavarian Academy of Sciences and Humanities",
+      "Göttingen Academy of Sciences",
+      "Academy of Sciences of the USSR",
+      "French Academy of Sciences",
+      "Royal Swedish Academy of Sciences"
+   ],
+   "id" : "Q937",
+   "ResearcherID" : "I-6013-2012",
+   "DBNL ID" : "eins001",
+   "place of death" : {
+      "Princeton" : {
+         "country" : [],
+         "located in the administrative territorial entity" : []
+      }
+   },
+   "Freebase identifier" : "/m/0jcx",
+   "NNDB people ID" : "302/000022236",
+   "genealogics.org personID" : "I00482340",
+   "CONOR identifier" : "7912035",
+   "sister" : "Maja Einstein",
+   "archives at" : "Swiss Literary Archives",
+   "occupation" : [
+      {
+         "physicist" : {
+            "field of work" : [],
+            "employer" : []
+         }
+      },
+      "philosopher of science",
+      "inventor",
+      "non-fiction writer",
+      "astronomer",
+      "educationist"
+   ],
+   "commemorative plaque image" : [
+      "Einstein deska.jpg",
+      "8839 - Milano - Via Bigli - Palazzo Olivazzi - Lapide Albert Einstein - Foto Giovanni Dall'Orto - 14-Apr-2007.jpg",
+      "Home Albert Einstein 1895 Memorial.jpg",
+      "Einstein-barrakka.JPG",
+      "Albert Einstein - Andräschule Salzburg.PNG",
+      "05w Denkmal Albert Einstein.jpg",
+      "Einstein Plaque.jpg"
+   ],
+   "ULAN identifier" : "500240971",
+   "employer" : [
+      "Swiss Federal Institute of Intellectual Property",
+      "Charles University in Prague"
+   ],
+   "OpenPlaques identifier" : "3242",
+   "instance of" : "human",
+   "EGAXA identifier" : "000837931",
+   "father" : "Hermann Einstein",
+   "signature" : "Albert Einstein signature 1934.svg",
+   "topic's main category" : "Category:Albert Einstein",
+   "NUKAT authorities" : "n95300836",
+   "NLA identifier" : "36582360",
+   "NLI (Israel) identifier" : "000042773",
+   "place of origin (Switzerland)" : "Zürich",
+   "National Portrait Gallery (London) person identifier" : "mp73025",
+   "native language" : "German",
+   "place of birth" : {
+      "Ulm" : {
+         "country" : []
+      }
+   },
+   "sex or gender" : "male",
+   "NSK identifier" : "000012537",
+   "award received" : [
+      "Barnard Medal for Meritorious Service to Science",
+      {
+         "Nobel Prize in Physics" : {
+            "point in time" : "+1921-00-00T00:00:00Z"
+         }
+      },
+      "Gold Medal of the Royal Astronomical Society",
+      {
+         "Prix Jules Janssen" : {
+            "point in time" : "+1931-01-01T00:00:00Z"
+         }
+      },
+      {
+         "Matteucci Medal" : {
+            "point in time" : "+1921-01-01T00:00:00Z"
+         }
+      },
+      {
+         "Max Planck Medal" : {
+            "point in time" : "+1929-01-01T00:00:00Z"
+         }
+      },
+      {
+         "Franklin Medal" : {
+            "point in time" : "+1935-01-01T00:00:00Z"
+         }
+      },
+      {
+         "Copley Medal" : {
+            "point in time" : "+1925-01-01T00:00:00Z"
+         }
+      },
+      "Order of Merit for Arts and Science"
+   ],
+   "languages spoken or published" : [
+      "German",
+      "English"
+   ],
+   "BIBSYS identifier" : "x90053072",
+   "religion" : "Judaism",
+   "BAV (Vatican Library) identifier" : "ADV10181679",
+   "mother" : "Pauline Koch",
+   "MusicBrainz artist ID" : "c98c325e-7277-46e8-8b44-e3517f3e041a",
+   "IMDb identifier" : "nm0251868",
+   "NTA identifier (Netherlands)" : "068350767",
+   "Commons category" : "Albert Einstein",
+   "VIAF identifier" : "75121530",
+   "LNB identifier" : "000027126"
+}
+

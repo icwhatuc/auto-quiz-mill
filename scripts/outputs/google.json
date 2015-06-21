@@ -1,0 +1,138 @@
+{
+   "logo image" : [
+      {
+         "Logo Google 2013 Official.svg" : {
+            "start time" : "+2013-09-20T00:00:00Z"
+         }
+      },
+      "Googlelogo.png",
+      {
+         "Googlelogo1997.jpg" : {
+            "start time" : "+1998-09-04T00:00:00Z"
+         }
+      },
+      "Google.png"
+   ],
+   "inception" : "+1998-09-04T00:00:00Z",
+   "employees" : [
+      {
+         "HASH(0x24f1228)" : {
+            "point in time" : "+2013-01-01T00:00:00Z"
+         }
+      },
+      {
+         "HASH(0x24f1828)" : {
+            "point in time" : "+2012-01-01T00:00:00Z"
+         }
+      }
+   ],
+   "stock exchange" : {
+      "NASDAQ" : {
+         "ticker symbol" : [
+            "GOOG",
+            "GOOGL"
+         ]
+      }
+   },
+   "business division" : [
+      "Niantic Labs",
+      "Google.org",
+      "Google X"
+   ],
+   "topic's main Wikimedia portal" : "Portal:Google",
+   "described by source" : {
+      "Lentapedia" : {
+         "stated in" : [],
+         "(OBSOLETE) title (use P1476, \"title\")" : "Google Inc."
+      }
+   },
+   "award received" : [
+      {
+         "Big Brother Awards" : {
+            "point in time" : "+2013-01-01T00:00:00Z"
+         }
+      },
+      {
+         "Princess of Asturias Award - Communications and Humanities" : {
+            "point in time" : "+2008-00-00T00:00:00Z"
+         }
+      }
+   ],
+   "member of" : [
+      {
+         "Open Automotive Alliance" : {
+            "start time" : "+2014-01-06T00:00:00Z"
+         }
+      },
+      {
+         "American Legislative Exchange Council" : {
+            "end time" : "+2014-09-22T00:00:00Z"
+         }
+      }
+   ],
+   "founder" : [
+      "Sergey Brin",
+      "Larry Page"
+   ],
+   "id" : "Q95",
+   "website account on" : {
+      "GitHub" : {
+         "website username" : "google"
+      }
+   },
+   "Freebase identifier" : "/m/045c7b",
+   "official website" : "https://www.google.com",
+   "Legal Entity Identifier" : "7ZW8QJWVPR4P1J1KQY45",
+   "name" : "Google",
+   "description" : "American multinational Internet and technology corporation",
+   "GND identifier" : "10122609-3",
+   "industry" : [
+      "Internet",
+      "software industry",
+      "telecommunications equipment"
+   ],
+   "named after" : "googol",
+   "instance of" : "company",
+   "Commons category" : "Google",
+   "chief executive officer" : [
+      {
+         "Larry Page" : {
+            "start time" : "+2011-04-04T00:00:00Z"
+         }
+      },
+      {
+         "Eric Schmidt" : {
+            "end time" : "+2011-04-03T00:00:00Z"
+         }
+      }
+   ],
+   "topic's main category" : "Category:Google",
+   "OpenCorporates ID" : "us_id/D158010",
+   "headquarters location" : {
+      "Googleplex" : {
+         "coordinate location" : {
+            "longitude" : "-122.084442",
+            "latitude" : "37.422053"
+         }
+      }
+   },
+   "IRS Employer Identification Number" : "77-0493581",
+   "subsidiaries" : [
+      "AdMob",
+      "DoubleClick",
+      "On2 Technologies",
+      "Picnik",
+      "YouTube",
+      "Zagat",
+      "Waze",
+      "Blogger",
+      "SlickLogin",
+      "Boston Dynamics",
+      "Bump",
+      "Nest Labs",
+      "DeepMind Technologies",
+      "WIMM One",
+      "VirusTotal"
+   ]
+}
+

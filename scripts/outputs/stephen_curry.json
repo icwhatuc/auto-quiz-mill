@@ -1,0 +1,46 @@
+{
+   "brother" : "Seth Curry",
+   "member of sports team" : {
+      "Golden State Warriors" : {
+         "start time" : "+2009-01-01T00:00:00Z"
+      }
+   },
+   "place of birth" : "Charlotte",
+   "country of citizenship" : "United States of America",
+   "given name" : "Stephen",
+   "sex or gender" : "male",
+   "educated at" : {
+      "Davidson College" : {
+         "start time" : "+2006-01-01T00:00:00Z",
+         "end time" : "+2009-01-01T00:00:00Z"
+      }
+   },
+   "award received" : [
+      {
+         "NBA Most Valuable Player Award" : {
+            "point in time" : "+2015-00-00T00:00:00Z"
+         }
+      },
+      {
+         "NBA Championship ring" : {
+            "point in time" : "+2015-00-00T00:00:00Z"
+         }
+      }
+   ],
+   "date of birth" : "+1988-03-14T00:00:00Z",
+   "id" : "Q352159",
+   "Freebase identifier" : "/m/0dw15r",
+   "position played on team" : "point guard",
+   "name" : "Stephen Curry",
+   "occupation" : [
+      "sportsperson",
+      "basketball player"
+   ],
+   "description" : "American basketball player",
+   "image" : "Stephen Curry 2.jpg",
+   "instance of" : "human",
+   "Commons category" : "Stephen Curry",
+   "pseudonym" : "Don Stephen",
+   "father" : "Dell Curry"
+}
+
