@@ -17,6 +17,9 @@
             },
             "views_last_month" : {
                 "type" : "long"
+            },
+            "incoming_links_count" : {
+                "type" : "long"
             }
         }
     }
