@@ -16,6 +16,7 @@ use Wikidata::API qw(
 );
 
 say to_json(getTopEntity($ARGV[0] || "einstein")->hashref, {utf8 => 1, pretty => 1});
+
 # say getTopEntityID("einstein");
 # say getEntityNameByID("Q937");
 

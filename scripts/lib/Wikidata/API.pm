@@ -12,6 +12,8 @@ use MediaWiki::API;  # cpan module
 use File::Slurp qw(read_file);
 use File::Basename;
 use JSON;
+use LWP::Simple;
+use POSIX qw(strftime);
 
 use lib "..";
 use Wikidata::Entity;
@@ -115,10 +117,6 @@ sub getTopEntity
     return $entity;
 }
 
-sub getEntities
-{
-}
-
 sub getEntityByID
 {
     my ($id, $opts) = @_;
@@ -142,6 +140,10 @@ sub getEntityByID
         
         my $mwresp = $mwh->api(\%params);
         $entity_raw = $mwresp->{entities}->{$id};
+
+        ## get popularity
+        $entity_raw->{views_last_month} = getViewsLastMonth($entity_raw->{labels}->{en}->{value});
+
         $cache->set( $id => $entity_raw, {expires_in => "1 week"} );
     }
     
@@ -166,6 +168,27 @@ sub _getDefaultParams
         utf8 => 1,
         formatversion => 2,
     };
+}
+
+sub getViewsLastMonth
+{
+    my $entity_name = shift;
+    my $views;
+    my @time = localtime(time);
+    my ($year, $month) = ($time[5], $time[4]);
+    $year += 1900;
+    $month = $month > 0 ? $month: 12; # last month (0 indexed)
+    my $url_date_portion = sprintf("%d%02d", $year, $month);
+    my $url = sprintf("http://stats.grok.se/json/en/%s/%s", $url_date_portion, $entity_name);
+    my $json = get($url);
+
+    if(defined $json)
+    {
+        my $views_data = decode_json($json);
+        $views += $_ foreach (values %{$views_data->{daily_views}});
+    }
+    
+    return $views;
 }
 
 return 1;

@@ -27,6 +27,8 @@ sub _preprocess
     $data{name} = $rawdata->{labels}->{en}->{value};
     $data{description} = $rawdata->{descriptions}->{en}->{value};
     
+    $data{views_last_month} = $rawdata->{views_last_month};
+
     if(
         (my $propsref = $opts->{props_ref}->{properties}) 
         && (my $entity_processor = $opts->{entity_processor})
@@ -141,6 +143,12 @@ sub get
 {
     my ($self, $prop) = @_;
     return $self->{$prop};
+}
+
+sub viewsLastMonth
+{
+    my $self = shift;
+    return $self->{views_last_month};
 }
 
 sub hashref
