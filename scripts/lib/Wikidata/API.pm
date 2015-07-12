@@ -28,7 +28,8 @@ our @EXPORT_OK = qw(
     getEntityByID
     getEntityNameByID
 );
-our $mw;
+
+our $mw = {};
 our $props;
 
 my $cache = CHI->new(
@@ -38,13 +39,15 @@ my $cache = CHI->new(
 
 sub _getmwh
 {
-    return $mw if($mw);
-    $mw = MediaWiki::API->new({ 
-        api_url => "https://www.wikidata.org/w/api.php",
+    my $url = shift || "https://www.wikidata.org/w/api.php";
+
+    return $mw->{$url} if($mw->{$url});
+    $mw->{$url} = MediaWiki::API->new({ 
+        api_url => $url,
         use_http_get => 1,
         on_error => \&_error_handler
     });
-    return $mw;
+    return $mw->{$url};
 }
 
 sub _error_handler
@@ -121,7 +124,7 @@ sub getEntityByID
 {
     my ($id, $opts) = @_;
 
-    my $entity_raw;
+    my ($entity_raw, $entity_name);
     # reference mapping ids to property names
     my $props = !$opts->{rawdata} ? _getprops() : undef;
     
@@ -140,9 +143,15 @@ sub getEntityByID
         
         my $mwresp = $mwh->api(\%params);
         $entity_raw = $mwresp->{entities}->{$id};
+        $entity_name = $entity_raw->{labels}->{en}->{value};
 
         ## get popularity
-        $entity_raw->{views_last_month} = getViewsLastMonth($entity_raw->{labels}->{en}->{value});
+        if(!$opts->{skip_popularity_data})
+        {
+            $entity_raw->{views_last_month} = getViewsLastMonth($entity_name);
+            $entity_raw->{incoming_links} = getIncomingLinks($entity_name);
+            $entity_raw->{incoming_links_count} = scalar @{$entity_raw->{incoming_links}} if $entity_raw->{incoming_links};
+        }
 
         $cache->set( $id => $entity_raw, {expires_in => "1 week"} );
     }
@@ -157,8 +166,9 @@ sub getEntityByID
 
 sub getEntityNameByID
 {
-    my ($id) = @_;
-    my $entity = getEntityByID($id, {rawdata => 1});
+    my ($id, $opts) = @_;
+    $opts = $opts || {};
+    my $entity = getEntityByID($id, {rawdata => 1, %$opts});
     return $entity->{labels}->{en}->{value};
 }
 
@@ -189,6 +199,48 @@ sub getViewsLastMonth
     }
     
     return $views;
+}
+
+sub getIncomingLinks
+{
+    my $entity_name = shift;
+    my @incoming_links = ();
+    
+    my $mwh = _getmwh("https://en.wikipedia.org/w/api.php");
+    my %params = (
+        action => 'query',
+        list => 'backlinks',
+        bltitle => $entity_name,
+        blfilterredir => 'nonredirects',
+        blnamespace => 0,
+        bllimit => 500,
+        continue => ''
+    );
+    my ($continue, $blcontinue) = (1, undef);
+    while($continue)
+    {
+        my $curr_params = {
+            %params
+        };
+        $curr_params->{blcontinue} = $blcontinue if $blcontinue;
+
+        
+        my $mwresp = $mwh->api($curr_params);
+        
+        push(@incoming_links, { id => ("Q" . $_->{pageid}), name => $_->{title} })
+            foreach (@{$mwresp->{query}->{backlinks}});
+        
+        if($mwresp->{continue})
+        {
+            $blcontinue = $mwresp->{continue}->{blcontinue};
+        }
+        else
+        {
+            $continue = 0;
+        }
+    }
+    
+    return \@incoming_links;
 }
 
 return 1;

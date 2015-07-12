@@ -28,6 +28,8 @@ sub _preprocess
     $data{description} = $rawdata->{descriptions}->{en}->{value};
     
     $data{views_last_month} = $rawdata->{views_last_month};
+    $data{incoming_links} = $rawdata->{incoming_links};
+    $data{incoming_links_count} = $rawdata->{incoming_links_count};
 
     if(
         (my $propsref = $opts->{props_ref}->{properties}) 
@@ -51,7 +53,10 @@ sub _preprocess
                 {
                     if($value->{type} eq 'wikibase-entityid')
                     {
-                        $value = &$entity_processor("Q" . $value->{value}->{"numeric-id"});
+                        $value = &$entity_processor(
+                            "Q" . $value->{value}->{"numeric-id"}, 
+                            { skip_popularity_data => 1 }
+                        );
                     }
                     else 
                     {
