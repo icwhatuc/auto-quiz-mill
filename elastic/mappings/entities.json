@@ -20,6 +20,10 @@
             },
             "incoming_links_count" : {
                 "type" : "long"
+            },
+            "props_list" : {
+                "type" : "string",
+                "index" : "not_analyzed"
             }
         }
     }

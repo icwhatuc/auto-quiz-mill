@@ -1,0 +1,64 @@
+{
+    "_shards": {
+        "failed": 0,
+        "successful": 1,
+        "total": 1
+    },
+    "facets": {
+        "instances": {
+            "_type": "terms",
+            "missing": 1,
+            "other": 0,
+            "terms": [
+                {
+                    "count": 6,
+                    "term": "human"
+                },
+                {
+                    "count": 2,
+                    "term": "television"
+                },
+                {
+                    "count": 1,
+                    "term": "wikimedia"
+                },
+                {
+                    "count": 1,
+                    "term": "series"
+                },
+                {
+                    "count": 1,
+                    "term": "program"
+                },
+                {
+                    "count": 1,
+                    "term": "page"
+                },
+                {
+                    "count": 1,
+                    "term": "name"
+                },
+                {
+                    "count": 1,
+                    "term": "given"
+                },
+                {
+                    "count": 1,
+                    "term": "disambiguation"
+                },
+                {
+                    "count": 1,
+                    "term": "company"
+                }
+            ],
+            "total": 16
+        }
+    },
+    "hits": {
+        "hits": [],
+        "max_score": 0.0,
+        "total": 11
+    },
+    "timed_out": false,
+    "took": 1
+}

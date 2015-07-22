@@ -35,6 +35,7 @@ sub _preprocess
         (my $propsref = $opts->{props_ref}->{properties}) 
         && (my $entity_processor = $opts->{entity_processor})
     ){
+        my @entity_props_list = ();
         foreach my $prop (keys %{$rawdata->{claims}})
         {
             my $prop_value = [];
@@ -42,6 +43,8 @@ sub _preprocess
             my $prop_details = $rawdata->{claims}->{$prop};
             # $prop_details = [ $prop_details ] if(ref $prop_details ne 'ARRAY');
             
+            push(@entity_props_list, "$prop:$prop_name");
+
             foreach my $detail (@$prop_details)
             {
                 my $qualifiers;
@@ -121,6 +124,8 @@ sub _preprocess
                 $data{$prop_name} = $prop_value;
             }
         }
+
+        $data{props_list} = \@entity_props_list;
     }
 
     return \%data;

@@ -1,0 +1,288 @@
+{
+    "_shards": {
+        "failed": 0,
+        "successful": 1,
+        "total": 1
+    },
+    "facets": {
+        "instances": {
+            "_type": "terms",
+            "missing": 1,
+            "other": 0,
+            "terms": [
+                {
+                    "count": 10,
+                    "term": "P31:instance of"
+                },
+                {
+                    "count": 6,
+                    "term": "P735:given name"
+                },
+                {
+                    "count": 6,
+                    "term": "P569:date of birth"
+                },
+                {
+                    "count": 6,
+                    "term": "P27:country of citizenship"
+                },
+                {
+                    "count": 6,
+                    "term": "P21:sex or gender"
+                },
+                {
+                    "count": 6,
+                    "term": "P106:occupation"
+                },
+                {
+                    "count": 5,
+                    "term": "P646:Freebase identifier"
+                },
+                {
+                    "count": 5,
+                    "term": "P373:Commons category"
+                },
+                {
+                    "count": 4,
+                    "term": "P345:IMDb identifier"
+                },
+                {
+                    "count": 4,
+                    "term": "P18:image"
+                },
+                {
+                    "count": 3,
+                    "term": "P856:official website"
+                },
+                {
+                    "count": 3,
+                    "term": "P434:MusicBrainz artist ID"
+                },
+                {
+                    "count": 3,
+                    "term": "P244:LCNAF LCCN identifier"
+                },
+                {
+                    "count": 3,
+                    "term": "P214:VIAF identifier"
+                },
+                {
+                    "count": 3,
+                    "term": "P19:place of birth"
+                },
+                {
+                    "count": 2,
+                    "term": "P910:topic's main category"
+                },
+                {
+                    "count": 2,
+                    "term": "P54:member of sports team"
+                },
+                {
+                    "count": 2,
+                    "term": "P413:position played on team"
+                },
+                {
+                    "count": 2,
+                    "term": "P268:BnF identifier"
+                },
+                {
+                    "count": 2,
+                    "term": "P227:GND identifier"
+                },
+                {
+                    "count": 2,
+                    "term": "P213:ISNI (ISO 27729)"
+                },
+                {
+                    "count": 2,
+                    "term": "P136:genre"
+                },
+                {
+                    "count": 1,
+                    "term": "P9:sister"
+                },
+                {
+                    "count": 1,
+                    "term": "P946:ISIN"
+                },
+                {
+                    "count": 1,
+                    "term": "P906:SELIBR"
+                },
+                {
+                    "count": 1,
+                    "term": "P7:brother"
+                },
+                {
+                    "count": 1,
+                    "term": "P691:NKC identifier"
+                },
+                {
+                    "count": 1,
+                    "term": "P580:start time"
+                },
+                {
+                    "count": 1,
+                    "term": "P571:inception"
+                },
+                {
+                    "count": 1,
+                    "term": "P553:website account on"
+                },
+                {
+                    "count": 1,
+                    "term": "P495:country of origin"
+                },
+                {
+                    "count": 1,
+                    "term": "P488:chairperson"
+                },
+                {
+                    "count": 1,
+                    "term": "P452:industry"
+                },
+                {
+                    "count": 1,
+                    "term": "P449:original network"
+                },
+                {
+                    "count": 1,
+                    "term": "P414:stock exchange"
+                },
+                {
+                    "count": 1,
+                    "term": "P409:NLA identifier"
+                },
+                {
+                    "count": 1,
+                    "term": "P364:original language of work"
+                },
+                {
+                    "count": 1,
+                    "term": "P358:discography"
+                },
+                {
+                    "count": 1,
+                    "term": "P357:(OBSOLETE) title (use P1476, \"title\")"
+                },
+                {
+                    "count": 1,
+                    "term": "P355:subsidiaries"
+                },
+                {
+                    "count": 1,
+                    "term": "P349:NDL identifier"
+                },
+                {
+                    "count": 1,
+                    "term": "P26:spouse"
+                },
+                {
+                    "count": 1,
+                    "term": "P25:mother"
+                },
+                {
+                    "count": 1,
+                    "term": "P245:ULAN identifier"
+                },
+                {
+                    "count": 1,
+                    "term": "P22:father"
+                },
+                {
+                    "count": 1,
+                    "term": "P199:business division"
+                },
+                {
+                    "count": 1,
+                    "term": "P1971:"
+                },
+                {
+                    "count": 1,
+                    "term": "P1884:"
+                },
+                {
+                    "count": 1,
+                    "term": "P1811:list of episodes"
+                },
+                {
+                    "count": 1,
+                    "term": "P17:country"
+                },
+                {
+                    "count": 1,
+                    "term": "P172:ethnic group"
+                },
+                {
+                    "count": 1,
+                    "term": "P169:chief executive officer"
+                },
+                {
+                    "count": 1,
+                    "term": "P159:headquarters location"
+                },
+                {
+                    "count": 1,
+                    "term": "P155:follows"
+                },
+                {
+                    "count": 1,
+                    "term": "P154:logo image"
+                },
+                {
+                    "count": 1,
+                    "term": "P1477:birth name"
+                },
+                {
+                    "count": 1,
+                    "term": "P1448:official name"
+                },
+                {
+                    "count": 1,
+                    "term": "P1343:described by source"
+                },
+                {
+                    "count": 1,
+                    "term": "P1340:eye color"
+                },
+                {
+                    "count": 1,
+                    "term": "P1297:IRS Employer Identification Number"
+                },
+                {
+                    "count": 1,
+                    "term": "P1278:Legal Entity Identifier"
+                },
+                {
+                    "count": 1,
+                    "term": "P1263:NNDB people ID"
+                },
+                {
+                    "count": 1,
+                    "term": "P1151:topic's main Wikimedia portal"
+                },
+                {
+                    "count": 1,
+                    "term": "P112:founder"
+                },
+                {
+                    "count": 1,
+                    "term": "P1128:employees"
+                },
+                {
+                    "count": 1,
+                    "term": "P1005:PTBNP identifier"
+                }
+            ],
+            "total": 131
+        }
+    },
+    "hits": {
+        "hits": [],
+        "max_score": 0.0,
+        "total": 11
+    },
+    "timed_out": false,
+    "took": 2
+}
