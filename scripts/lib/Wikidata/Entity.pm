@@ -6,6 +6,12 @@ use warnings;
 use Data::Dumper;
 use Wikidata::API qw(getEntityNameByID);
 
+use constant IGNORE_QUALIFIERS_FOR_PROP => {
+    map { $_ => 1 } (
+        "instance of",
+    )
+};
+
 sub new
 {
     my ($class, $entity_data, $opts) = @_;
@@ -42,7 +48,9 @@ sub _preprocess
             my $prop_name = $propsref->{$prop};
             my $prop_details = $rawdata->{claims}->{$prop};
             # $prop_details = [ $prop_details ] if(ref $prop_details ne 'ARRAY');
-            
+           
+            next if !$prop_name; # TODO: Do something about getting a more updated props list?
+
             push(@entity_props_list, "$prop:$prop_name");
 
             foreach my $detail (@$prop_details)
@@ -76,7 +84,7 @@ sub _preprocess
                 }
 
                 ## handle qualifier
-                if($qdetails)
+                if($qdetails && !IGNORE_QUALIFIERS_FOR_PROP()->{$prop_name})
                 {
                     $qualifiers = {};
 

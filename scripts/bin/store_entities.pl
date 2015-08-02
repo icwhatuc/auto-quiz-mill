@@ -61,7 +61,7 @@ foreach my $topic (@topics)
         my $entity_rep = $entity->hashref;
         saveEntity($entity_id, $entity_rep);
 
-        say "SAVED $entity_id => $entity_name (inspired by $topic)"
+        say "SAVED $entity_id => $entity_name (inspired by '$topic')"
     }
     else
     {

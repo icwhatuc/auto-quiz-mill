@@ -73,6 +73,7 @@ sub _getprops
     return $props;
 }
 
+# TODO: should attempt to cache these results
 sub getTopEntityBasics
 {
     my ($query) = @_;
@@ -114,7 +115,6 @@ sub getTopEntityDescription
 sub getTopEntity
 {
     my ($query, $opts) = @_;
-    my $mwh = _getmwh();
     my $topResultId = getTopEntityID($query);
     my $entity = $topResultId ? getEntityByID($topResultId, $opts) : undef;
     return $entity;

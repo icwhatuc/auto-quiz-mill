@@ -3,6 +3,7 @@ package AQM::Elasticsearch;
 use strict;
 use warnings;
 
+use JSON;
 use Search::Elasticsearch;
 
 use constant ELASTIC_INDEX => 'auto-quiz-mill';
@@ -22,10 +23,36 @@ sub _getesh
     return $es;
 }
 
+sub updateIndexSettings
+{
+    my ($settings) = @_;
+    my $es = _getesh();
+
+    $es->indices->close(index => ELASTIC_INDEX);
+    $es->indices->put_settings(
+        index => ELASTIC_INDEX,
+        body => $settings
+    );
+    $es->indices->open(index => ELASTIC_INDEX);
+}
+
+sub updateMapping
+{
+    my ($name, $mapping) = @_;
+    my $es = _getesh();
+
+    $es->indices->put_mapping(
+        index => ELASTIC_INDEX,
+        type => $name,
+        body => $mapping
+    );
+}
+
 sub saveEntity
 {
     my ($id, $entity) = @_;
     my $es = _getesh();
+    
     $es->index(
         index => ELASTIC_INDEX,
         type => ELASTIC_ENTITY_TYPE,
