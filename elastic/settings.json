@@ -1,0 +1,11 @@
+{
+    "auto-quiz-mill": {
+        "settings": {
+            "index": {
+                "mapping": {
+                    "ignore_malformed" : true
+                }
+            }
+        }
+    }
+}

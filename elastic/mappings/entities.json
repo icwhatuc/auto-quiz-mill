@@ -2,6 +2,7 @@
     "entities" : {
         "_timestamp" : { "enabled" : true },
         "_ttl" : { "enabled" : true, "default" : "1d" },
+        "dynamic" : "false",
         "properties" : {
             "id" : {
                 "type" : "string",
@@ -22,6 +23,10 @@
                 "type" : "long"
             },
             "props_list" : {
+                "type" : "string",
+                "index" : "not_analyzed"
+            },
+            "instance of" : {
                 "type" : "string",
                 "index" : "not_analyzed"
             }
