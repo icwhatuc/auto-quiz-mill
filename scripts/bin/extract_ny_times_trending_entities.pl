@@ -28,9 +28,9 @@ my (@subjects, @geographies, @organizations, @persons);
 foreach my $r (@{$data->{results}})
 {
     push(@subjects, @{$r->{des_facet}}) if $r->{des_facet};
-    push(@geographies, @{$r->{geo_facet}}) if $r->{geo_facet};
+    push(@geographies, map {processLocationName($_)} @{$r->{geo_facet}}) if $r->{geo_facet};
     push(@organizations, @{$r->{org_facet}}) if $r->{org_facet};
-    push(@persons, @{$r->{per_facet}}) if $r->{per_facet};
+    push(@persons, map {processPersonName($_)} @{$r->{per_facet}}) if $r->{per_facet};
 }
 
 my @facets = ();
@@ -53,4 +53,24 @@ if($opt_p) {
 }
 
 print "$_\n" foreach (sort {lc $a cmp lc $b} (uniq(@facets)));
+
+sub processPersonName
+{
+    my $name = shift;
+    if($name =~ m{^(?<last>.+?), (?<first_middle>.+?)$})
+    {
+        $name = join(' ', $+{first_middle}, $+{last});
+    }
+    return $name;
+}
+
+sub processLocationName
+{
+    my $name = shift;
+    if($name =~ m{^(?<place>.+?) \(.+\)$}) # Staten Island (NYC)
+    {
+        $name = $+{place};
+    }
+    return $name;
+}
 
