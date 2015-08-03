@@ -4,6 +4,10 @@
     "email" : "cuicwhatuc@gmail.com",
     "url" : "https://github.com/icwhatuc/auto-quiz-mill/issues",
     "dependencies" : {
-        "express" : "4.12.4"
+        "express" : "4.12.4",
+        "react-component-gallery" : "*"
+    },
+    "browserify" : {
+        "transform" : [ "reactify" ]
     }
 }

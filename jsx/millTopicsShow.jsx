@@ -1,101 +1,40 @@
+var ComponentGallery = require('react-component-gallery');
+
+/*
+var Canvas = require('canvas')
+  , Image = Canvas.Image
+  , canvas = new Canvas(300, 300)
+  , ctx = canvas.getContext('2d');
+
+ctx.font = '30px Impact';
+ctx.rotate(.1);
+ctx.fillText("Awesome!", 50, 100);
+
+var te = ctx.measureText('Awesome!');
+ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+ctx.beginPath();
+ctx.lineTo(50, 102);
+ctx.lineTo(50 + te.width, 102);
+ctx.stroke();
+*/
+
 var MillTopicsShow = React.createClass({
-    getInitialState : function() {
-        var self = this;
-
-        var state = {
-            topics : [
-                {"name" : "Tomorrowland", "type" : "movie"},
-                {"name" : "Barack Obama", "type" : "person"},
-                {"name" : "Las Vegas", "type" : "place"},
-                {"name" : "Fleet Week", "type" : "event"},
-                {"name" : "Stephen Curry", "type" : "person"}
-            ],
-            currentTopic: {
-                "name" : "Tomorrowland",
-                "type" : "movie"
-            },
-        };
-
-        google.load('search', '1', {
-            callback: function() {
-                self.imageSearch = new google.search.ImageSearch();
-                self.imageSearch.setSearchCompleteCallback(self, self.setTopic, null);
-                self.imageSearch.execute(state.currentTopic.name);
-            }
-        });
-        
-        return state;
-    },
-
-    getFreshTopicsFromServer : function() {
-        
-    },
-
-    getRandomTopic : function(exclude) {
-        var excludes_dict = {};
-        var topics = this.state.topics;
-        if(!exclude && this.state.currentTopic)
-            exclude = this.state.currentTopic;
-        
-        if(exclude && exclude.contructor === Array)
-        {
-            for(var k = 0; k < exclude.length; k++)
-                excludes_dict[exclude[k].name] = true;
-        }
-        else if(exclude)
-            excludes_dict[exclude.name] = true;
-
-        var randIdx;
-        do {
-            randIdx = Math.floor(Math.random()*topics.length);
-        } while(excludes_dict[topics[randIdx].name]);
-       
-        if(this.imageSearch) {
-            this.imageSearch.execute(topics[randIdx].name);
-        }
-
-        this.setState({
-            nextTopic : topics[randIdx]
-        });
-    },
-
-    setTopic : function() {
-        if (this.imageSearch.results && this.imageSearch.results.length > 0) {
-            var image = this.imageSearch.results[0];
-            document.getElementById("background").style.backgroundImage = "url('" + image.url + "')";
-        }
-
-        if(this.state.nextTopic)
-            this.setState({
-                currentTopic : this.state.nextTopic
-            });
-    },
-
-    /* expected stuff follows */
-    componentDidMount : function() {
-        this.getFreshTopicsFromServer();
-        setInterval(this.getFreshTopicsFromServer, this.props.pollServerInterval);
-        // this.getRandomTopic();
-        setInterval(this.getRandomTopic, this.props.topicInterval);
-    },
-
     render : function() {
-        var currentTopicName = this.state.currentTopic.name;
-        var currentTopicUrl = "http://www.google.com/search?q=" + currentTopicName;
         return (
-            <div className="topicContainer">
-                <a className="topic" target="_blank" href={currentTopicUrl}>
-                    {currentTopicName}
-                </a>
-            </div>
+            <ComponentGallery className="photos" margin="10" widthHeightRatio="3/5" targetWidth="100">
+                <a href="google.com"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/December_2009_partrial_lunar_eclipse-cropped.jpg/300px-December_2009_partrial_lunar_eclipse-cropped.jpg" /></a>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Googleplex-Patio-Aug-2014.JPG/300px-Googleplex-Patio-Aug-2014.JPG" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Derek_Jeter_batting_stance_allison.jpg/200px-Derek_Jeter_batting_stance_allison.jpg" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Wetten_dass_20130323_6475.jpg/300px-Wetten_dass_20130323_6475.jpg" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Coldplay_Viva_La_Vida_Tour_in_Hannover_August_25th_2009.jpg/300px-Coldplay_Viva_La_Vida_Tour_in_Hannover_August_25th_2009.jpg" />
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Violin_VL100.png/221px-Violin_VL100.png" />
+            </ComponentGallery>  
         );
     }
 });
 
 React.render(
-    // hit server every 20 seconds,
-    // new topic displayed every 2 seconds
-    <MillTopicsShow pollServerInterval={20000} topicInterval={2000} />,
+    <MillTopicsShow/>,
     document.getElementById('content')
 );
 
