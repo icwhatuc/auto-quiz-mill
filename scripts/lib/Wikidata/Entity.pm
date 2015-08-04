@@ -36,6 +36,7 @@ sub _preprocess
     $data{views_last_month} = $rawdata->{views_last_month};
     $data{incoming_links} = $rawdata->{incoming_links};
     $data{incoming_links_count} = $rawdata->{incoming_links_count};
+    $data{img} = $rawdata->{img};
 
     if(
         (my $propsref = $opts->{props_ref}->{properties}) 
@@ -66,7 +67,7 @@ sub _preprocess
                     {
                         $value = &$entity_processor(
                             "Q" . $value->{value}->{"numeric-id"}, 
-                            { skip_popularity_data => 1 }
+                            { additional_data => 1 }
                         );
                     }
                     else 
@@ -96,7 +97,7 @@ sub _preprocess
 
                         foreach my $qpval (@$qpropvalues)
                         {
-                            my $qproptype = $qpval->{datatype};
+                            my $qproptype = $qpval->{datatype} or next;
                             if($qproptype eq 'time')
                             {
                                 push(@qvals, $qpval->{datavalue}->{value}->{time});
@@ -155,6 +156,12 @@ sub description
 {
     my $self = shift;
     return $self->{description};
+}
+
+sub img
+{
+    my $self = shift;
+    return $self->{img};
 }
 
 sub get

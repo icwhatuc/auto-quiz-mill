@@ -20,6 +20,8 @@ use Wikidata::Entity;
 
 use Exporter qw(import);
 
+use constant IMG_SIZE => 300;
+
 our @EXPORT_OK = qw(
     getTopEntity
     getTopEntityID
@@ -145,9 +147,12 @@ sub getEntityByID
         $entity_raw = $mwresp->{entities}->{$id};
         $entity_name = $entity_raw->{labels}->{en}->{value};
 
-        ## get popularity
-        if(!$opts->{skip_popularity_data})
+        if(!$opts->{additional_data})
         {
+            ## image
+            $entity_raw->{img} = getImage($entity_name);
+
+            ## get popularity
             $entity_raw->{views_last_month} = getViewsLastMonth($entity_name);
             $entity_raw->{incoming_links} = getIncomingLinks($entity_name);
             $entity_raw->{incoming_links_count} = scalar @{$entity_raw->{incoming_links}} if $entity_raw->{incoming_links};
@@ -243,5 +248,33 @@ sub getIncomingLinks
     return \@incoming_links;
 }
 
-return 1;
+sub getImage
+{
+    my ($entity_name, $size) = @_;
+    
+    my $mwh = _getmwh("https://en.wikipedia.org/w/api.php");
+    $size ||= IMG_SIZE;
+    my %params = (
+        action => 'query',
+        titles => $entity_name,
+        prop => 'pageimages',
+        pithumbsize => $size,
+    );
+
+    my $mwresp = $mwh->api(\%params);
+    
+    my $pages = $mwresp->{query}->{pages};
+    my $pageid = (keys %$pages)[0];
+    my $thumbnail = $pages->{$pageid}->{thumbnail} or return undef;
+    
+    if($thumbnail->{width} < IMG_SIZE && $size == IMG_SIZE)
+    {
+        $size = int($thumbnail->{height} / $thumbnail->{width} * $size + 0.99);
+        return getImage($entity_name, $size);
+    }
+
+    return $thumbnail->{source};
+}
+
+1;
 
