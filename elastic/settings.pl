@@ -16,6 +16,6 @@ my $settings_file = "$Bin/settings.json";
 my $settings = from_json(read_file($settings_file));
 my $index = (keys %$settings)[0];
 $settings = $settings->{$index}->{settings};
-
-AQM::Elasticsearch::updateIndexSettings($settings);
+my $es = AQM::Elasticsearch->new();
+$es->updateIndexSettings($settings);
 

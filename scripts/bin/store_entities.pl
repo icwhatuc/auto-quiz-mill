@@ -12,7 +12,7 @@ use Getopt::Std;
 use FindBin qw($Bin);
 use lib "$Bin/../lib";
 use Wikidata::API qw(getTopEntity);
-use AQM::Elasticsearch qw(saveEntity);
+use AQM::Elasticsearch::Entities qw(saveEntity);
 
 our($opt_g, $opt_h, $opt_n, $opt_t);
 

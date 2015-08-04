@@ -24,7 +24,6 @@ my $mapping = $opt_m;
 my $delete_flag = $opt_d;
 my $mapping_file = "$Bin/$mapping.json";
 my $mapping_def = from_json(read_file($mapping_file));
-
-# AQM::Elasticsearch::deleteMapping($mapping) if $delete_flag;
-AQM::Elasticsearch::updateMapping($mapping => $mapping_def);
+my $es = AQM::Elasticsearch->new();
+$es->updateMapping($mapping => $mapping_def);
 
