@@ -4,9 +4,9 @@ use strict;
 use warnings;
 
 use JSON;
+use AQM::Config;
 use Search::Elasticsearch;
 
-use constant ELASTIC_INDEX => 'auto-quiz-mill';
 use constant ELASTIC_ENTITY_TYPE => 'entities';
 
 use Exporter qw(import);
@@ -17,8 +17,9 @@ our $es;
 sub _getesh
 {
     return $es if $es;
+    my $nodes = $AQM::Config::core{ELASTICSEARCH}{nodes};
     $es = Search::Elasticsearch->new(
-        nodes => ['https://mpetgxg8c4:8sl7z9gaui@quiz-9057819005.us-east-1.bonsai.io'],  
+        nodes => $nodes,  
     );
     return $es;
 }
@@ -27,22 +28,24 @@ sub updateIndexSettings
 {
     my ($settings) = @_;
     my $es = _getesh();
+    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
 
-    $es->indices->close(index => ELASTIC_INDEX);
+    $es->indices->close(index => $index);
     $es->indices->put_settings(
-        index => ELASTIC_INDEX,
+        index => $index,
         body => $settings
     );
-    $es->indices->open(index => ELASTIC_INDEX);
+    $es->indices->open(index => $index);
 }
 
 sub updateMapping
 {
     my ($name, $mapping) = @_;
     my $es = _getesh();
+    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
 
     $es->indices->put_mapping(
-        index => ELASTIC_INDEX,
+        index => $index,
         type => $name,
         body => $mapping
     );
@@ -52,9 +55,10 @@ sub saveEntity
 {
     my ($id, $entity) = @_;
     my $es = _getesh();
+    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
     
     $es->index(
-        index => ELASTIC_INDEX,
+        index => $index,
         type => ELASTIC_ENTITY_TYPE,
         id => $id,
         body => $entity
@@ -64,8 +68,9 @@ sub saveEntity
 sub deleteEntity
 {
     my ($id) = @_;
+    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
     $es->delete(
-        index => ELASTIC_INDEX,
+        index => $index,
         type => ELASTIC_ENTITY_TYPE,
         id => $id
     );
