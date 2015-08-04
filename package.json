@@ -5,7 +5,8 @@
     "url" : "https://github.com/icwhatuc/auto-quiz-mill/issues",
     "dependencies" : {
         "express" : "4.12.4",
-        "react-component-gallery" : "*"
+        "react-component-gallery" : "*",
+        "elasticsearch" : "5.0.0"
     },
     "browserify" : {
         "transform" : [ "reactify" ]
