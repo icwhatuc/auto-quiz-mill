@@ -1,0 +1,19 @@
+$col-breaks: 1500px 1200px 900px 600px 300px;
+
+.photos {
+    @each $break in $col-breaks {
+        $k: length($col-breaks) - index($col-breaks, $break) + 1;
+        @media (max-width: $break) {
+            -moz-column-count:    $k;
+            -webkit-column-count: $k;
+            column-count:         $k;
+        }
+    }
+}
+
+.photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+
