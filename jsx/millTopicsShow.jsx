@@ -30,7 +30,9 @@ var MillTopicsShow = React.createClass({
                 sort : [
                     { views_last_month : { "order" : "desc", "missing" : "_last" } },
                     { incoming_links_count : { "order" : "desc", "missing" : "_last" } },
-                ]
+                ],
+                from : 0,
+                size : 100
             }
         }, function(error, res) {
             if(error) {
@@ -63,7 +65,7 @@ var MillTopicsShow = React.createClass({
         if(!entityNodes.length)
         {
             return (
-                <p>hello, world!</p>
+                <p></p>
             );
         }
 
