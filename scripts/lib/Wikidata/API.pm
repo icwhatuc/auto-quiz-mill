@@ -250,7 +250,7 @@ sub getIncomingLinks
 
 sub getImage
 {
-    my ($entity_name, $size) = @_;
+    my ($entity_name, $size, $prevent_recursion) = @_;
     
     my $mwh = _getmwh("https://en.wikipedia.org/w/api.php");
     $size ||= IMG_SIZE;
@@ -267,10 +267,10 @@ sub getImage
     my $pageid = (keys %$pages)[0];
     my $thumbnail = $pages->{$pageid}->{thumbnail} or return undef;
     
-    if($thumbnail->{width} < IMG_SIZE && $size == IMG_SIZE)
+    if($thumbnail->{width} < IMG_SIZE && !$prevent_recursion)
     {
         $size = int($thumbnail->{height} / $thumbnail->{width} * $size + 0.99);
-        return getImage($entity_name, $size);
+        return getImage($entity_name, $size, 1);
     }
 
     return $thumbnail->{source};
