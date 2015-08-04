@@ -1,0 +1,18 @@
+{
+    "question-template" : {
+        "_timestamp" : { "enabled" : true },
+        "properties" : {
+            "text" : {
+                "type" : "string",
+                "analyzer" : "snowball"
+            },
+            "params" : {
+                "type" : "string",
+                "index" : "not_analyzed"
+            },
+            "rating" : {
+                "type" : "integer"
+            }
+        }
+    }
+}
