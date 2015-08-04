@@ -150,7 +150,7 @@ sub getEntityByID
         if(!$opts->{additional_data})
         {
             ## image
-            $entity_raw->{img} = getImage($entity_name);
+            $entity_raw->{img_url} = getImage($entity_name);
 
             ## get popularity
             $entity_raw->{views_last_month} = getViewsLastMonth($entity_name);

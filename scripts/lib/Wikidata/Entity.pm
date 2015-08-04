@@ -36,7 +36,12 @@ sub _preprocess
     $data{views_last_month} = $rawdata->{views_last_month};
     $data{incoming_links} = $rawdata->{incoming_links};
     $data{incoming_links_count} = $rawdata->{incoming_links_count};
-    $data{img} = $rawdata->{img};
+    $data{img_url} = $rawdata->{img_url};
+    
+    # url
+    my $url_identifier = $data{name};
+    $url_identifier =~ s{ }{_}g;
+    $data{entity_url} = sprintf("https://en.wikipedia.org/wiki/%s", $url_identifier);
 
     if(
         (my $propsref = $opts->{props_ref}->{properties}) 
