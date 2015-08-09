@@ -10,7 +10,7 @@ use AQM::Config;
 use Search::Elasticsearch;
 
 use constant AUTOLOAD_METHOD_MAP => {
-    basic_client_methods => [ qw( index delete ) ],
+    basic_client_methods => [ qw( index search delete ) ],
 };
 
 use constant METHOD_TYPE_HANDLERS => {

@@ -2,7 +2,7 @@
     "query" : {
         "match_all" : {}
     },
-    "_source" : [ "name" ],
+    "_source" : [ "name" , "instance of" ],
     "from" : 0,
     "size" : 999999
 }
