@@ -7,28 +7,37 @@ use JSON;
 use AQM::Config;
 use Search::Elasticsearch;
 
-use constant ELASTIC_ENTITY_TYPE => 'entities';
-
-use Exporter qw(import);
-our @EXPORT_OK = qw(saveEntity deleteEntity);
-
 # get es handle
-our $es;
-sub _getesh
+sub new
 {
-    return $es if $es;
+    my $class = shift;
     my $nodes = $AQM::Config::core{ELASTICSEARCH}{nodes};
-    $es = Search::Elasticsearch->new(
+    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
+    my $es = Search::Elasticsearch->new(
         nodes => $nodes,  
     );
-    return $es;
+    my $self = { _es => $es, _index => $index };
+    bless($self, $class);
+    return $self;
+}
+
+sub es
+{
+    my ($self, $h) = @_;
+    return ($self->{_es} = $h ? $h : $self->{_es});
+}
+
+sub index
+{
+    my ($self, $idx) = @_;
+    return ($self->{_index} = $idx ? $idx : $self->{_index});
 }
 
 sub updateIndexSettings
 {
-    my ($settings) = @_;
-    my $es = _getesh();
-    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
+    my ($self, $settings) = @_;
+    my $es = $self->es;
+    my $index = $self->index;
 
     $es->indices->close(index => $index);
     $es->indices->put_settings(
@@ -40,9 +49,9 @@ sub updateIndexSettings
 
 sub updateMapping
 {
-    my ($name, $mapping) = @_;
-    my $es = _getesh();
-    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
+    my ($self, $name, $mapping) = @_;
+    my $es = $self->es;
+    my $index = $self->index;
 
     $es->indices->put_mapping(
         index => $index,
@@ -51,29 +60,9 @@ sub updateMapping
     );
 }
 
-sub saveEntity
+sub AUTOLOAD
 {
-    my ($id, $entity) = @_;
-    my $es = _getesh();
-    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
-    
-    $es->index(
-        index => $index,
-        type => ELASTIC_ENTITY_TYPE,
-        id => $id,
-        body => $entity
-    );
-}
-
-sub deleteEntity
-{
-    my ($id) = @_;
-    my $index = $AQM::Config::core{ELASTICSEARCH}{index};
-    $es->delete(
-        index => $index,
-        type => ELASTIC_ENTITY_TYPE,
-        id => $id
-    );
+    ### TODO: define
 }
 
 return 1;
