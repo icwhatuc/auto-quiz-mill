@@ -49,7 +49,7 @@ sub updateIndexSettings
 
 sub updateMapping
 {
-    my ($name, $mapping) = @_;
+    my ($self, $name, $mapping) = @_;
     my $es = $self->es;
     my $index = $self->index;
 
