@@ -3,9 +3,42 @@ package AQM::Elasticsearch;
 use strict;
 use warnings;
 
+use Data::Dumper;
+
 use JSON;
 use AQM::Config;
 use Search::Elasticsearch;
+
+use constant AUTOLOAD_METHOD_MAP => {
+    basic_client_methods => [ qw( index delete ) ],
+};
+
+use constant METHOD_TYPE_HANDLERS => {
+    basic_client_methods => sub {
+        my ($self, $method, %args) = @_;
+        return $self->es->$method(
+            index => $self->conf_index,
+            %args
+        );
+    },
+};
+
+our $METHOD_MAP = _prep_method_map();
+
+sub _prep_method_map
+{
+    my $glob_map = AUTOLOAD_METHOD_MAP();
+    my %map = ();
+    foreach my $k (keys %$glob_map)
+    {
+        my $methods = $glob_map->{$k};
+        foreach my $m (@$methods)
+        {
+            $map{$m} = $k;
+        }
+    }
+    return \%map;
+}
 
 # get es handle
 sub new
@@ -27,7 +60,7 @@ sub es
     return ($self->{_es} = $h ? $h : $self->{_es});
 }
 
-sub index
+sub conf_index
 {
     my ($self, $idx) = @_;
     return ($self->{_index} = $idx ? $idx : $self->{_index});
@@ -60,9 +93,17 @@ sub updateMapping
     );
 }
 
+sub DESTROY {}
+
+our $AUTOLOAD;
 sub AUTOLOAD
 {
-    ### TODO: define
+    my ($self, %args) = @_;
+    my $called = $AUTOLOAD =~ s/.*:://r;;
+    my $method_type = $METHOD_MAP->{$called} or
+        die "ERROR: unexpected method call - $called";
+    my $handler = METHOD_TYPE_HANDLERS()->{$method_type};
+    return $handler->($self, $called, %args);
 }
 
 return 1;
