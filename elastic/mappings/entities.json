@@ -1,7 +1,7 @@
 {
     "entities" : {
         "_timestamp" : { "enabled" : true },
-        "_ttl" : { "enabled" : true, "default" : "1d" },
+        "_ttl" : { "enabled" : true, "default" : "4w" },
         "dynamic" : "false",
         "properties" : {
             "id" : {
