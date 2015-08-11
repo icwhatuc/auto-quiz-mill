@@ -72,21 +72,22 @@ sub updateIndexSettings
     my $es = $self->es;
     my $index = $self->index;
 
-    $es->indices->close(index => $index);
-    $es->indices->put_settings(
+    $es->es->indices->close(index => $index);
+    $es->es->indices->put_settings(
         index => $index,
         body => $settings
     );
-    $es->indices->open(index => $index);
+    $es->es->indices->open(index => $index);
 }
 
 sub updateMapping
 {
     my ($self, $name, $mapping) = @_;
+    
     my $es = $self->es;
     my $index = $self->index;
 
-    $es->indices->put_mapping(
+    $es->es->indices->put_mapping(
         index => $index,
         type => $name,
         body => $mapping
