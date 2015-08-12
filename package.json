@@ -1,14 +1,21 @@
 {
-    "name" : "auto-quiz-mill",
-    "version" : "0.0.1",
-    "email" : "cuicwhatuc@gmail.com",
-    "url" : "https://github.com/icwhatuc/auto-quiz-mill/issues",
-    "dependencies" : {
-        "express" : "4.12.4",
-        "react-component-gallery" : "*",
-        "elasticsearch" : "5.0.0"
-    },
-    "browserify" : {
-        "transform" : [ "reactify" ]
-    }
+  "name": "auto-quiz-mill",
+  "version": "0.0.1",
+  "email": "cuicwhatuc@gmail.com",
+  "url": "https://github.com/icwhatuc/auto-quiz-mill/issues",
+  "dependencies": {
+    "async": "^1.4.2",
+    "elasticsearch": "5.0.0",
+    "express": "4.12.4",
+    "react-component-gallery": "*",
+    "sprintf-js": "^1.0.3"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "devDependencies": {
+    "sleep": "^3.0.0"
+  }
 }
