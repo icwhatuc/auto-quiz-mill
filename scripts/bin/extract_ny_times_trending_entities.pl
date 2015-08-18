@@ -3,11 +3,18 @@
 use strict;
 use warnings;
 
+use CHI;
+use FindBin qw($Bin);
 use Data::Dumper;
 use LWP::Simple;
 use JSON qw(from_json);
 use Getopt::Std;
 use List::MoreUtils qw(uniq);
+
+my $cache = CHI->new(
+    driver => 'File',
+    root_dir => "$Bin/../tmp/"
+);
 
 our ($opt_d, $opt_o, $opt_g, $opt_p, $opt_h);
 
@@ -20,8 +27,16 @@ die q{
 } if(!getopts("dghop") || $opt_h);
 
 my $all_mode = !$opt_d && !$opt_o && !$opt_g && !$opt_p;
-my $url = 'http://api.nytimes.com/svc/topstories/v1/home.json?api-key=091882e61861f420060b35097b4419a2:1:72021160';
-my $data = from_json(get($url));
+my $data;
+
+if (defined $cache->get( "nyt" )) {
+    $data = $cache->get( "nyt");
+}
+else {
+    my $url = 'http://api.nytimes.com/svc/topstories/v1/home.json?api-key=091882e61861f420060b35097b4419a2:1:72021160';
+    $data = from_json(get($url));
+    $cache->set( "nyt" => $data, {expires_in => "1 day"} );
+}
 
 my (@subjects, @geographies, @organizations, @persons);
 
