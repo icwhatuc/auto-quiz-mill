@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use feature qw(say);
-
+use CHI;
 use Data::Dumper;
 use FindBin qw($Bin);
 use Getopt::Std;
@@ -15,6 +15,11 @@ use Wikidata::API qw(getTopEntity);
 use AQM::Elasticsearch::Entities qw(saveEntity);
 
 our($opt_g, $opt_h, $opt_n, $opt_t);
+
+my $cache = CHI->new(
+    driver => 'File',
+    root_dir => "$Bin/../tmp/"
+);
 
 die q{
     Usage: store_entities.pl -[ghnt]
@@ -30,19 +35,40 @@ my @entities = ();
 
 if($opt_n)
 {
-    my $nytimes_topics = `$Bin/extract_ny_times_trending_entities.pl`;
+    my $nytimes_topics;
+    if (defined $cache->get( "nyt")) {
+        $nytimes_topics = $cache->get("nyt");    
+    }
+    else {
+        $nytimes_topics = `$Bin/extract_ny_times_trending_entities.pl`;
+        $cache->set("nyt" => $nytimes_topics, {expires_in => "1 day"});
+    }
     push(@topics, split("\n", $nytimes_topics));
 }
 
 if($opt_g)
 {
-    my $googletrends_topics = `$Bin/googleTrendKeyWords.py`;
+    my $googletrends_topics;
+    if (defined $cache->get("googletrends")) {
+        $googletrends_topics = $cache->get("googletrends");
+    }
+    else {
+        $googletrends_topics = `$Bin/googleTrendKeyWords.py`;
+        $cache->set("googletrends" => $googletrends_topics, {expires_in => "30 days"});
+    }
     push(@topics, split("\n", $googletrends_topics));
 }
 
 if($opt_t)
 {
-    my $twittertrends_topics = `$Bin/twitterTrends.py`;
+    my $twittertrends_topics;
+    if (defined $cache->get("twittertrends")) {
+        $twittertrends_topics = $cache->get("twittertrends");
+    }
+    else {
+        $twittertrends_topics = `$Bin/twitterTrends.py`;
+        $cache->set("twittertrends" => $twittertrends_topics, {expires_in => "4 hours"});
+    }
     push(@topics, split("\n", $twittertrends_topics));
 }
 

@@ -29,14 +29,15 @@ die q{
 my $all_mode = !$opt_d && !$opt_o && !$opt_g && !$opt_p;
 my $data;
 
-if (defined $cache->get( "nyt" )) {
-    $data = $cache->get( "nyt");
-}
-else {
+# caching done in store_entities.pl
+#if (defined $cache->get( "nyt" )) {
+#    $data = $cache->get( "nyt");
+#}
+#else {
     my $url = 'http://api.nytimes.com/svc/topstories/v1/home.json?api-key=091882e61861f420060b35097b4419a2:1:72021160';
     $data = from_json(get($url));
-    $cache->set( "nyt" => $data, {expires_in => "1 day"} );
-}
+#    $cache->set( "nyt" => $data, {expires_in => "1 day"} );
+#}
 
 my (@subjects, @geographies, @organizations, @persons);
 
